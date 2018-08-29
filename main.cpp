@@ -14,11 +14,11 @@ volatile bool isHigh = true;
 
 // Timer 0 overflow vector - this runs every time timer0 overflows
 // Frequency / Prescaling / Counter (9600000Hz / 1 / 256 = 37500Hz)
-// 37500Hz / 100 = 375Hz
+// Interrupt Frequency / PWM_COUNTER_RESET_VAL (37500Hz / 100 = 375Hz)
 ISR(TIM0_OVF_vect) {
     ++pwmCounter;
 
-    // Reset pwmCounter if the maximum value is reahed and set the output to HIGH
+    // Reset pwmCounter if the maximum value is reached and set the output to HIGH
     if (pwmCounter >= PWM_COUNTER_RESET_VAL) {
         pwmCounter = 0;
         isHigh = true;
